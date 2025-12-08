@@ -1,0 +1,23 @@
+# Ignore all notebooks (for now)
+notebooks/
+*.ipynb_checkpoints
+
+# Ignore virtual environment contents
+venv/
+
+# Ignore lit review papers folder
+lit_review_papers/
+
+# Ignore personal project notes
+notes.md
+
+# Ignore raw data, keep empty directory
+data_raw/*
+!data_raw/.gitkeep
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+#.DS_Store
+.DS_Store
