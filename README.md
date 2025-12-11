@@ -7,8 +7,7 @@ Motivated by recent literature on the spatial dynamics of entrepreneurship and e
 Please note this project is in the early stages of development, with the final dataset for analysis yet to be constructed.
 
 ## How To Run
-A simple shell script (run_all.sh) is included to run the current data cleaning steps in order. In order for this to run successfully, the datasets mentioned below must be added to the `data_raw/` subdirectory. Raw data files are not included in this repository. 
-This pipeline will expand as the project develops.
+A simple shell script (run_all.sh) is included to run the current data cleaning steps in order. In order for this to run successfully, the datasets mentioned below must be added to the `data_raw/` subdirectory, as the raw data files are not included in this repository. This pipeline will expand as the project develops.
 
 ## Data Sources
 
