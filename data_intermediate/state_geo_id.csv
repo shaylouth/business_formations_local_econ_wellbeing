@@ -1,0 +1,53 @@
+STATE,state_fips,STATE_NAME,geo_idx
+AL,1,Alabama,7
+AK,2,Alaska,6
+AZ,4,Arizona,9
+AR,5,Arkansas,8
+CA,6,California,10
+CO,8,Colorado,11
+CT,9,Connecticut,12
+DE,10,Delaware,13
+DC,11,District of Columbia,14
+FL,12,Florida,15
+GA,13,Georgia,16
+HI,15,Hawaii,17
+ID,16,Idaho,18
+IL,17,Illinois,19
+IN,18,Indiana,20
+IA,19,Iowa,21
+KS,20,Kansas,22
+KY,21,Kentucky,23
+LA,22,Louisiana,24
+ME,23,Maine,25
+MD,24,Maryland,26
+MA,25,Massachusetts,27
+MI,26,Michigan,28
+MN,27,Minnesota,29
+MS,28,Mississippi,30
+MO,29,Missouri,31
+MT,30,Montana,32
+NE,31,Nebraska,33
+NV,32,Nevada,34
+NH,33,New Hampshire,35
+NJ,34,New Jersey,36
+NM,35,New Mexico,37
+NY,36,New York,38
+NC,37,North Carolina,39
+ND,38,North Dakota,40
+OH,39,Ohio,41
+OK,40,Oklahoma,42
+OR,41,Oregon,43
+PA,42,Pennsylvania,44
+RI,44,Rhode Island,45
+SC,45,South Carolina,46
+SD,46,South Dakota,47
+TN,47,Tennessee,48
+TX,48,Texas,49
+UT,49,Utah,50
+VT,50,Vermont,51
+VA,51,Virginia,52
+WA,53,Washington,53
+WV,54,West Virginia,54
+WI,55,Wisconsin,55
+WY,56,Wyoming,56
+PR,72,Puerto Rico,57
