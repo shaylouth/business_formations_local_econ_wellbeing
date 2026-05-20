@@ -9,7 +9,7 @@ venv/
 lit_review_papers/
 
 # Ignore personal project notes
-notes.md
+Notes.ipynb
 
 # Ignore raw data, keep empty directory
 data_raw/*

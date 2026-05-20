@@ -10,6 +10,7 @@ import pandas as pd
 # Reading in Census Business Formation Statistics (BFS) complete time series dataset
 df = pd.read_csv('data_raw/BFS-mf/BFS-mf.csv', skiprows=392)
     # Note: first 392 rows are useful data keys and notes
+    # reproducibility note: adjust skiprows value accordingly depending on BFS time series download
 
 ##########################################
 # REMOVING UNNECESSARY DATA

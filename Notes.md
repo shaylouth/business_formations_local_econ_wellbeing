@@ -1,0 +1,57 @@
+# PROJECT NOTES
+*These are my working notes for this project, but feel free to check out where I'm at. TBD if the interactive checkboxes in my to-do transfer accurately into github.*
+
+## Project Notes
+### *To Do List*
+- **First Stage Data Cleaning**
+
+    - [x] State apps
+        - [x] application values are concatenated, not added, by year aggregation loop right now
+        - [x] add fips via geo_id
+    - [x] County apps
+    - [ ] State formations
+        - [ ] decide how to handle missing values
+        - [ ] aggregate to year level
+    - [ ] Unemployment
+        - [ ] figure out how to read in flatfile from internet or locally correctly
+    - [ ] Gini index
+        - [ ] remember what is going on here
+    - [ ] Poverty Rate
+        - [ ] download data
+
+- **Stage 1.5 Data Cleaning**
+    * [ ] Construct full stage one panel
+    * [ ] Construct county formations estimation
+        * should this use the county/state app ratio by year or should I get averaged ratio overtime for each county?
+            * Maybe graph to see if it changes drastically year to year 
+
+- **First Stage Analysis**
+    - [ ] Learn fixed effects panel stuff in Python
+
+- **Stage Two Data Cleaning**
+    * [ ] Find county demographics sources
+        * race
+        * maybe proportion immigrant?
+        * population size? density? (big city counties vs rural counties?)
+
+    * [ ] Make lagged poverty, inequality, and gini variables
+
+- **Stage Two Analysis**
+    * [ ] Look more into which dynamic estimator would work best here (use Prof Alem course notes, recommended textbooks in syllabus)
+
+## Useful Code Snippets
+
+#### Copy-paste diagnostic loop like Stata describe command
+(*I did not write this snippet*)
+```python
+
+# Inspecting missing values and data distribution by column
+for col in df.columns:
+    print("====", col, "====")
+    print("dtype:", df[col].dtype)
+    print("nunique:", df[col].nunique())
+    print("missing:", df[col].isna().sum())
+    print(df[col].value_counts(dropna=False).head(10))
+    print("\n")
+
+```
