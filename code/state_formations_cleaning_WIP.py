@@ -6,6 +6,9 @@ This file cleans the complete Census Business Formation Statistics time series d
 """
 
 import pandas as pd
+import numpy as np
+import missingno as msno
+import matplotlib.pyplot as plt
 
 # Reading in Census Business Formation Statistics (BFS) complete time series dataset
 df = pd.read_csv('data_raw/BFS-mf/BFS-mf.csv', skiprows=392)
@@ -27,6 +30,26 @@ df = df[df['dt_idx']==6]
 # Restricting to period of interest
 df = df[df['per_idx'] >= 13]
 
+
+##########################################
+# ADJUSTING VARNAMES, VARTYPES, AND CONVERTING MISSING VALUES
+
+# Converting supressed ('D') observations to missing
+df['val'] = df['val'].replace('D', np.nan)
+
+# Renaming and converting state_formations to numeric type
+df['val'] = df['val'].astype('float64')
+df = df.rename(columns = {'val': 'state_formations'})
+
+##########################################
+# ADDING STANDARDIZED GEOGRAPHIC INDEX (state fips)
+
+# Reading in geographic index standardization file (contains state indexes from all different sources)
+geo_id = pd.read_csv('data_intermediate/state_geo_id.csv')
+
+# Merging in state_geo_id.csv to add state_fips
+df = pd.merge(df, geo_id, on="geo_idx")
+
 ##########################################
 # AGGREGATING OBSERVATIONS TO YEAR LEVEL
 
@@ -42,6 +65,7 @@ df['year'] = 2005 + (df['per_idx'] - 13) // 12
 ##########################################
 # CHECKING DATASET DETAILS
 
+
 print(df.describe(include='all'))
 print('###########################################')
 
@@ -56,6 +80,6 @@ for col in df.columns:
 
 df.to_csv('data_intermediate/state_formations_Q8_monthly.csv', index=False)
 
-######## TEST ##############
-test = pd.read_csv('data_intermediate/state_formations_Q8_monthly.csv', index=False)
-test = df.drop
+
+
+

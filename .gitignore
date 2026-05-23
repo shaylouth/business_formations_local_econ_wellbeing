@@ -1,6 +1,3 @@
-# Ignore all notebooks (for now)
-notebooks/
-*.ipynb_checkpoints
 
 # Ignore virtual environment contents
 venv/

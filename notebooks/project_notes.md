@@ -10,7 +10,9 @@
         - [x] add fips via geo_id
     - [x] County apps
     - [ ] State formations
+        - [x] add fips
         - [ ] decide how to handle missing values
+            - [ ] *make graph to visualize the patterns better*
         - [ ] aggregate to year level
     - [ ] Unemployment
         - [ ] figure out how to read in flatfile from internet or locally correctly
@@ -55,3 +57,15 @@ for col in df.columns:
     print("\n")
 
 ```
+
+## Progress Notes
+
+* **5/21/26** 
+    * Learning Progress: 
+        * fixed kernel issues with .ipynb files, code runs smoothly through file now! 
+        * learned about lambda functions
+    * Project Progress:
+        * added fips to state_formations file
+        * converted formations to numeric, converted 'D' to missings
+        * made .ipynb for state formations missingness exploration
+    * Next Step: make graph of missingness, see notes in state formations cleaning notebook, handle the suppressed data accordingly
