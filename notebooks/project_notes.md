@@ -83,9 +83,16 @@ for col in df.columns:
         * Got very deep into measurement methodology and validation challenges
         * Looked into alternative data sources to potentially 1) patch suppression in data set where possible and 2) test validity of my estimate of county formations
             * Found SUPER promising Connecticut administrative business registry dataset to use in future measurement validation
-            * Made difficult decision to set this aside for now due to endlessly exploding possibilities in this measurement construction phase. Exciting, but not aligned with the current preliminary analysis timeline. I will implement this in the next stage! 
+            * Made difficult decision to set this aside for now due to endlessly exploding possibilities in this measurement construction phase. Exciting, but not aligned with the current preliminary analysis timeline. I will implement this in the next stage!
+        * Update: upon further exploration of the methodology/cutoffs behind Census BFS data suppression, I am realizing that the spliced business formations within 8 quarters (SBF)
     * **Next Step**: Treat suppressed data as missing for now, and use this approach:
         1. Decide threshold for highly-suppressed states, what information is usable vs not usable
         2. Decide threshold for unreliable year aggregations (too many months for this year-state observation are missing, so this year-state observation is going to be missing)
         3. Eventually run analysis with and without high suppression states for comparison
         4. Explore if measurement quality differs systematically in ways that bias interpretation
+
+* **5/28/26**
+    * Technical Progress
+    * Project Progress
+        * Found historical quarterly BFS data, downloaded
+        * Cleaned quarterly BFS formations time series
