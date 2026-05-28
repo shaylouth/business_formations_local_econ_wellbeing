@@ -27,8 +27,6 @@
 - **Stage 1.5 Data Cleaning**
     * [ ] Construct full stage one panel
     * [ ] Construct county formations estimation
-        * should this use the county/state app ratio by year or should I get averaged ratio overtime for each county?
-            * Maybe graph to see if it changes drastically year to year 
 
 - **First Stage Analysis**
     - [ ] Learn fixed effects panel stuff in Python
@@ -96,3 +94,4 @@ for col in df.columns:
     * Project Progress
         * Found historical quarterly BFS data, downloaded
         * Cleaned quarterly BFS formations time series
+        * Realized I need to use non-seasonally adjusted data where possible because I'm aggregating to a year level (at the start I wanted to work on a monthly level); updated older BFS cleaning files accordingly to pull non-adjusted data instead

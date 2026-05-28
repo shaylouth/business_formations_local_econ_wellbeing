@@ -17,8 +17,8 @@ df = pd.read_csv('data_raw/BFS-mf/BFS-mf.csv', skiprows=392)
 # Dropping total U.S. observations and regional categories
 df = df[~df['geo_idx'].isin([1,2,3,4,5])]
 
-# Dropping non-seasonally adjusted data
-df = df[df['is_adj']==1]
+# Dropping seasonally adjusted data
+df = df[df['is_adj']==0]
 
 # Restricting to Business Applications data
 df_applications = df[df['dt_idx']==1]
@@ -30,6 +30,8 @@ df_applications = df_applications[df_applications['per_idx'] >= 13]
 # Adjusting state_applications varname and vartype
 df_applications = df_applications.rename(columns={'val': 'state_apps'})
 df_applications['state_apps'] = df_applications['state_apps'].astype('float64')
+
+print(df_applications.head())
 
 
 ##########################################

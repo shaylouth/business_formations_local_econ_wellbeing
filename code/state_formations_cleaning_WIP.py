@@ -21,8 +21,8 @@ df = pd.read_csv('data_raw/BFS-mf/BFS-mf.csv', skiprows=392)
 # Dropping total U.S. observations and regional categories
 df = df[~df['geo_idx'].isin([1,2,3,4,5])]
 
-# Dropping non-seasonally adjusted data
-df = df[df['is_adj']==1]
+# Dropping seasonally adjusted data
+df = df[df['is_adj']==0]
 
 # Restricting to Business Formations data
 df = df[df['dt_idx']==6]

@@ -1,7 +1,7 @@
 """
 This file cleans the historical quarterly Census Business Formation Statistics time series data
-to produce:
-    1. state_yearly_formations.csv
+to produce the intermediate file:
+    1. bfs_historic_annual_state_formations.csv
 """
 # SETUP
 import pandas as pd
