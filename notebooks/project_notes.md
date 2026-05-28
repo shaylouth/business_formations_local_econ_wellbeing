@@ -13,7 +13,8 @@
         - [x] add fips
         - [ ] **decide how to handle suppressed values**
             - [x] *make graph to visualize the patterns better*
-            - [ ] Investigate if I can get business formation data from direct state sources for high-suppression states
+            - [x] Investigate if I can get business formation data from direct state sources for high-suppression states
+                - *Yes, BUT this is now exploding the early analysis stage beyond my current timeline. I am going to take a faster, temporary route to produce a preliminary analysis and return to this fabulous data after that.*
             - [ ] pro/con to different ways to handle the missingness
         - [ ] aggregate to year level
     - [ ] Unemployment
@@ -79,6 +80,12 @@ for col in df.columns:
     * Project Progress:
         * Made state-year missingness heatmap for state formations!!
         * Started going over options to handle suppressed data, decision pending
-    * **Next Step**: Decide between suppressed data handling options and move on with it!
-        * maybe just treat them as missing for initial prelim analysis?
-        * maybe search for suppressed data from other state-level sources, now or later
+        * Got very deep into measurement methodology and validation challenges
+        * Looked into alternative data sources to potentially 1) patch suppression in data set where possible and 2) test validity of my estimate of county formations
+            * Found SUPER promising Connecticut administrative business registry dataset to use in future measurement validation
+            * Made difficult decision to set this aside for now due to endlessly exploding possibilities in this measurement construction phase. Exciting, but not aligned with the current preliminary analysis timeline. I will implement this in the next stage! 
+    * **Next Step**: Treat suppressed data as missing for now, and use this approach:
+        1. Decide threshold for highly-suppressed states, what information is usable vs not usable
+        2. Decide threshold for unreliable year aggregations (too many months for this year-state observation are missing, so this year-state observation is going to be missing)
+        3. Eventually run analysis with and without high suppression states for comparison
+        4. Explore if measurement quality differs systematically in ways that bias interpretation
