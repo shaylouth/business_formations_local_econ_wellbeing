@@ -6,12 +6,12 @@ Motivated by recent literature on the spatial dynamics of entrepreneurship and e
 Specifically, this project explores how new business formations impact poverty, unemployment, and inequality at the county-year level, and if county characteristics like demographics and prior unemployment, poverty, and inequality are associated with heterogeneity in these relationships.
 
 In order to achieve this, I first estimate new business formations at the county-year level using Census Business Formation Statistics data, 
-then construct a panel at the county-level using ACS and U.S. Bureau of Labor Statistics data. I plan to analyze the relationship between new business formations and measures of local economic well-being, including poverty, inequality, and employment outcomes using basic fixed effects panel models. Then I will analyze if there is any heterogeneity in these associations by county characteristics like racial makeup, pre-existing poverty, gini index, and more. 
+then construct a county-year panel using ACS and U.S. Bureau of Labor Statistics data. I plan to analyze the relationship between new business formations and measures of local economic well-being, including poverty, inequality, and employment outcomes using basic fixed effects panel models. Then I will examine if there is any heterogeneity in these associations by county characteristics like racial makeup, pre-existing poverty, gini index, and more. 
 
 ## Current Status
 Please note this project is still in the early stages. Current work is focused on data cleaning, harmonization, and panel construction, as well as exploring empirical strategies for analysis. 
 
-The next step in this project is to finish constructing the panel, including cleaning, standardizing, and merging the remaining datasets. Then, I will conduct a preliminary analysis to assess baseline impact. After this, I plan to incorporate additional county demographics data and conduct a more detailed analysis to assess impact heterogeneity. I have yet to choose specific estimators for this step, but I plan to use interaction terms for heterogeneity and I hope to explore dynamic models to further explore the impacts of poverty and unemployment over time.
+The next step in this project is to finish constructing the panel, including cleaning, standardizing, and merging the remaining datasets. Then, I will conduct a preliminary analysis to assess baseline relationships. After this, I plan to incorporate additional county demographics data and conduct a more detailed analysis to assess relationship heterogeneity. I have yet to choose specific estimators for this step, but I plan to use interaction terms for heterogeneity and I hope to explore dynamic models to further explore the impacts of poverty and unemployment over time.
 
 ## Data Sources
 
