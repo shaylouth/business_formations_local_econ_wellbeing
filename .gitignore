@@ -21,6 +21,3 @@ __pycache__/
 
 #.DS_Store
 .DS_Store
-
-# For now until not empty:
-county_formations_estimation.py
