@@ -59,6 +59,9 @@ df = df.sort_values(by=['geo_idx','per_idx'])
 # Defining year variable to aggregate and later merge by
 df['year'] = 2005 + (df['per_idx'] - 13) // 12
 
+# Counting number of missing values per year-state grouping
+print(df.groupby('year', 'state').is_na().sum())
+
 # W-I-P note: 
 # Deciding how to handle missing observations in the formations data before completing aggregation
 

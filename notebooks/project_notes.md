@@ -11,11 +11,11 @@
     - [x] County apps
     - [ ] State formations
         - [x] add fips
-        - [ ] **decide how to handle suppressed values**
+        - [x] decide how to handle suppressed values
             - [x] *make graph to visualize the patterns better*
             - [x] Investigate if I can get business formation data from direct state sources for high-suppression states
                 - *Yes, BUT this is now exploding the early analysis stage beyond my current timeline. I am going to take a faster, temporary route to produce a preliminary analysis and return to this fabulous data after that.*
-            - [ ] pro/con to different ways to handle the missingness
+            - [x] pro/con to different ways to handle the missingness
         - [ ] aggregate to year level
     - [ ] Unemployment
         - [ ] figure out how to read in flatfile from internet or locally correctly
@@ -95,3 +95,17 @@ for col in df.columns:
         * Found historical quarterly BFS data, downloaded
         * Cleaned quarterly BFS formations time series
         * Realized I need to use non-seasonally adjusted data where possible because I'm aggregating to a year level (at the start I wanted to work on a monthly level); updated older BFS cleaning files accordingly to pull non-adjusted data instead
+
+* **5/29/26**
+    * Technical Progress
+        * Practiced writing for loops
+        * Learned about .sample (did not use in the end though)
+        * Reviewed using f-strings in for loops
+    * Project Progress
+        * Created quarterly_state_formations_validation.ipynb
+        * Validated annualization method to handle suppressed data years with at least 10 non-suppressed years
+        * Decided how to handle data suppression in preliminary analysis. Ready to proceed now!
+    * Next Steps
+        * Finally complete state_formations dataset with new historic data and properly handled suppressed data
+        * Merge state formations, state applications, and county applications into one dataframe
+        * Estimate county formations
