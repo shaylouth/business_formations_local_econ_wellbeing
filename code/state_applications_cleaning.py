@@ -44,6 +44,7 @@ geo_id = pd.read_csv('data_intermediate/state_geo_id.csv')
 df_applications = pd.merge(df_applications, geo_id, on="geo_idx")
     # extra indexes are dropped in aggregation step below
 
+
 ##########################################
 # AGGREGATING OBSERVATIONS TO YEAR LEVEL
 

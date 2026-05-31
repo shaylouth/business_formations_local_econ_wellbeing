@@ -9,14 +9,14 @@
         - [x] fix application values (concatenated, not added, by year aggregation loop right now)
         - [x] add fips via geo_id
     - [x] County apps
-    - [ ] State formations
+    - [x] State formations
         - [x] add fips
         - [x] decide how to handle suppressed values
             - [x] *make graph to visualize the patterns better*
             - [x] Investigate if I can get business formation data from direct state sources for high-suppression states
                 - *Yes, BUT this is now exploding the early analysis stage beyond my current timeline. I am going to take a faster, temporary route to produce a preliminary analysis and return to this fabulous data after that.*
             - [x] pro/con to different ways to handle the missingness
-        - [ ] aggregate to year level
+        - [x] aggregate to year level
     - [ ] Unemployment
         - [ ] figure out how to read in flatfile from internet or locally correctly
     - [ ] Gini index
@@ -109,3 +109,13 @@ for col in df.columns:
         * Finally complete state_formations dataset with new historic data and properly handled suppressed data
         * Merge state formations, state applications, and county applications into one dataframe
         * Estimate county formations
+
+* **5/30/26**
+    * Project Progress
+        * Finished suppressed data handling in post-2014 state formations
+        * Finished cleaning state formations dataset
+        * Started county-year formations estimation file
+    * Next Steps
+        * Write one-to-many merge
+        * Create estimation
+        * Clean remaining 3 files
