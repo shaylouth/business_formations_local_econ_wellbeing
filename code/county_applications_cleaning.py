@@ -21,7 +21,7 @@ df_long = pd.wide_to_long(
 df_long_complete = df_long.reset_index()   
 
 # Renaming variable
-df_long_complete = df_long_complete.rename(columns={'BA': 'Applications'})
+df_long_complete = df_long_complete.rename(columns={'BA': 'county_apps', 'State': 'STATE', 'Year':'year'})
 print(df_long_complete.head())
 
 

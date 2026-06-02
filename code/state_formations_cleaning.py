@@ -131,4 +131,4 @@ for col in ann.columns:
 # SAVING DATASETS
 
 df.to_csv('data_intermediate/state_formations_Q8_monthly.csv', index=False)
-final.to_csv('data_clean/annualized_state_formations.csv')
+final.to_csv('data_clean/annualized_state_formations.csv', index = False)

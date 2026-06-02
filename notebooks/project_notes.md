@@ -26,10 +26,11 @@
 
 - **Stage 1.5 Data Cleaning**
     * [ ] Construct full stage one panel
-    * [ ] Construct county formations estimation
+    * [x] Construct county formations estimation
 
 - **First Stage Analysis**
     - [ ] Learn fixed effects panel stuff in Python
+    - [ ] Run analysis on full dataset, pre-2015 dataset, and with all partially missing years dropped and compare
 
 - **Stage Two Data Cleaning**
     * [ ] Find county demographics sources
@@ -115,7 +116,11 @@ for col in df.columns:
         * Finished suppressed data handling in post-2014 state formations
         * Finished cleaning state formations dataset
         * Started county-year formations estimation file
+        * Finished county-year formations estimations
     * Next Steps
-        * Write one-to-many merge
-        * Create estimation
         * Clean remaining 3 files
+        * Prelim analysis (regressionson three different data subsets!)
+
+* **6/1/26**
+    * Project Progress
+        * 

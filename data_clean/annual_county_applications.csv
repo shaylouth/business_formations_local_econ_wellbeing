@@ -1,4 +1,4 @@
-State,County,County Code,state_fips,county_fips,Year,Applications
+STATE,County,County Code,state_fips,county_fips,year,county_apps
 AL,Autauga County,1001,1,1,2005,335
 AL,Autauga County,1001,1,1,2006,348
 AL,Autauga County,1001,1,1,2007,348

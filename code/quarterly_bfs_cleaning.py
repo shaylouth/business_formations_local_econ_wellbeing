@@ -64,5 +64,5 @@ formations = formations.drop(columns = ['geo_idx', 'sa', 'series'] + quarters)
 # SAVING DATASET
 #---------------------------------------------
 print(formations.head())
-formations.to_csv('data_intermediate/bfs_historic_annual_state_formations.csv')
+formations.to_csv('data_intermediate/bfs_historic_annual_state_formations.csv', index=False)
 
