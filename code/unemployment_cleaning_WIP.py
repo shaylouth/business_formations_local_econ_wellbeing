@@ -9,6 +9,7 @@ laus = pd.read_csv(
     sep="\t"
 )
 
+
 print(laus.head())
 
-laus.to_csv('data_clean/unemployment_WIP.csv', index=False)
+# laus.to_csv('data_clean/unemployment_WIP.csv', index=False)

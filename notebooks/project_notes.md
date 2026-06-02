@@ -18,7 +18,7 @@
             - [x] pro/con to different ways to handle the missingness
         - [x] aggregate to year level
     - [ ] Unemployment
-        - [ ] figure out how to read in flatfile from internet or locally correctly
+        - [x] figure out lack of file extension
     - [ ] Gini index
         - [ ] revisit structure
     - [ ] Poverty Rate
