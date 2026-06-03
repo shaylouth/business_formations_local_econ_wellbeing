@@ -123,4 +123,24 @@ for col in df.columns:
 
 * **6/1/26**
     * Project Progress
-        * 
+        * Started working on cleaning LAUS files
+        * I don't know what was going on before but I was able to load the file despite its lack of an extension with the same code
+        * Started exploration file
+
+* **6/2/26**
+    * Technical Progress
+        * Reviewed modifiying, combining, slicing, etc strings
+    * Project Progress
+        * Parsed series_id in main file before realizing metadata files provide this parsing. Good practice though!
+        * Merged LAUS metadata files with main data
+        * Moved cleaning to actual .py file, will load in cleaned file directly to notebook for further exploration
+
+* **6/3/26**
+    * Technical Progress
+        * Started learning about memory management best practices, will learn more later
+            * Need to convert categorical variables to category dtype!
+        * Investigated using more careful validation steps (assert keyword)
+    * Project Progress
+        * Moved forward with cleaning LAUS file
+
+

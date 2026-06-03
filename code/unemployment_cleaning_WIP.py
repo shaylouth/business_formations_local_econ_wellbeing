@@ -57,11 +57,28 @@ laus = pd.merge(laus, area, on=('area_code'))
 # #################################################
 # CLEANING FULL DATASET
 
+# Dropping unnecessary columns
+laus = laus.drop(columns = [
+    'area_type_code_x', 'area_type_code_y', 'display_level', 
+    'selectable', '_merge', 'area_text', 'seasonal', 
+    'footnote_codes_y', 'measure_code'
+    ])
+
+# Dropping annual average observations
+laus = laus[laus['period'] != 'M13']
+
+# Adding 'DC' as the 'state' for District of Columbia to match other files
+assert laus.loc[laus['state'].isna(), 'county'].unique().tolist() == ['District of Columbia']
+laus = laus.fillna({'state':'DC'})
+
+# #################################################
+# AGGREGATING TO YEAR LEVEL
 
 
 # #################################################
 # CHECKING & SAVING DATASET
 
+print('Final Check #################################')
 print(laus.head())
 
 laus.to_csv('data_clean/unemployment_WIP.csv', index=False)

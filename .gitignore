@@ -14,6 +14,7 @@ data_raw/*
 
 # Ignore large WIP data files 
 unemployment_WIP.csv
+data_intermediate/unemployment_preclean.csv
 
 # Python cache
 __pycache__/
