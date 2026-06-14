@@ -143,4 +143,10 @@ for col in df.columns:
     * Project Progress
         * Moved forward with cleaning LAUS file
 
+* **6/9/26**
+    * Technical Progress
+        * 
+    * Project Progress
+        * To investigate bizzare number of counties, merging in county-level fips file to check unmatched data
+
 

@@ -72,6 +72,13 @@ assert laus.loc[laus['state'].isna(), 'county'].unique().tolist() == ['District 
 laus = laus.fillna({'state':'DC'})
 
 # #################################################
+# MERGING IN FIPS
+
+fips = pd.read_csv('data_intermediate/state_geo_id.csv')
+laus = pd.merge(laus, fips, left_on='county', right_on='COUNTY_NAME', indicator=True)
+
+
+# #################################################
 # AGGREGATING TO YEAR LEVEL
 
 
