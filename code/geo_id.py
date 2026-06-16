@@ -14,6 +14,8 @@ bfs = pd.read_csv('data_raw/BFS-mf/BFS-mf.csv', skiprows=43, nrows=57)
 bfs = bfs.rename(columns={'geo_code': 'STATE'})
 print(bfs.head())
 
+
+
 ################# State FIPS Codes ###################
 # Reading in State FIPS Codes from Census.gov
 state_fips = pd.read_csv(
@@ -35,6 +37,8 @@ state_id = state_id.rename(columns = {'STATEFP': 'state_fips'})
 print(state_id.head())
 state_id.to_csv('data_intermediate/state_geo_id.csv', index=False)
 
+
+
 ################# County FIPS Codes ###################
 # Reading in County FIPS Codes from Census.gov
 county_fips = pd.read_csv(
@@ -44,6 +48,8 @@ county_fips = pd.read_csv(
         "STATEFP": str,
         "COUNTYFP": str
     })
+
+# Reading in 
 
 # Updating variable names and dropping unnecessary variables
 county_fips = county_fips.rename(columns = {'STATEFP': 'state_fips', 'COUNTYFP': 'county_fips', 'COUNTYNAME': 'COUNTY_NAME'})
@@ -57,6 +63,8 @@ county_id = pd.merge(county_fips, state_id, on='state_fips')
 county_id = county_id.drop(columns = ['STATE_y'])
 county_id = county_id.rename(columns = {'STATE_x': 'STATE'})
 print(county_id.head())
+
+
 
 ################# Creating Unique County 5-digit FIPS Codes ###################
 # Adding combined 5 digit state+county fips for unique a county identifier

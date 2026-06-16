@@ -37,7 +37,7 @@ laus = pd.merge(laus, series, on=('series_id'), indicator=True)
 # Dropping unnecessary measures (unemployment rate = 03)
 laus = laus[laus['measure_code'] == 3]
 
-# Restricting to county/county-equivalents subset
+# Restricting to county/county-equivalents (counties and equivalents = F)
 laus = laus[laus['area_type_code'] == 'F']
 
 # #################################################
@@ -75,7 +75,7 @@ laus = laus.fillna({'state':'DC'})
 # MERGING IN FIPS
 
 fips = pd.read_csv('data_intermediate/state_geo_id.csv')
-laus = pd.merge(laus, fips, left_on='county', right_on='COUNTY_NAME', indicator=True)
+# laus = pd.merge(laus, fips, left_on='county', right_on='COUNTY_NAME', how='outer', indicator=True)
 
 
 # #################################################

@@ -6,6 +6,8 @@ To-do: check for completeness and add data validation checks in the process
 import pandas as pd
 import glob
 
+################# COMBINING YEARLY FILES INTO ONE FILE #####################
+
 # Collecting list of filenames of gini index files 
 CSVs = glob.glob('data_raw/gini/*Data.csv')
 
@@ -16,11 +18,8 @@ df_list = []
 for file in CSVs:
     df = pd.read_csv(file, header = 1)
     
-    # Data validation
-
-
-    # Rename variables 
-
+    # NOTE: ADD DATA VALIDATION CHECKS
+        # maybe check row count for each file to ensure standardized
     
     # Dropping empty columns created in read_csv
     df = df.dropna(axis=1, how='all')
@@ -34,7 +33,13 @@ for file in CSVs:
     df_list.append(df)
 
 # Concatenating all years, sorting panel by year 
-final_df = pd.concat(df_list, ignore_index=True)
-final_df = final_df.sort_values(by=['year','Geographic Area Name'])
+panel = pd.concat(df_list, ignore_index=True)
+panel = panel.sort_values(by=['year','Geographic Area Name'])
 
-final_df.to_csv('data_intermediate/gini_panel.csv', index=False)
+
+
+################# ClEANING FULL COMBINED FILE #####################
+panel[['COUNTY_NAME', 'STATE_NAME']] = panel['Geographic Area Name'].str.split(', ')
+
+################# SAVING DATA #####################
+panel.to_csv('data_intermediate/gini_panel.csv', index=False)

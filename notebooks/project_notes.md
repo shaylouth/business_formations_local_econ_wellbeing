@@ -144,9 +144,27 @@ for col in df.columns:
         * Moved forward with cleaning LAUS file
 
 * **6/9/26**
-    * Technical Progress
-        * 
     * Project Progress
         * To investigate bizzare number of counties, merging in county-level fips file to check unmatched data
+    * Technical Progress
+        * Took some notes on data structures vs data types vs data objects
+
+* **6/15/26**
+    * Project Progress
+        * Finding issues with missing counties state-by-state
+        * Considering handling of specific different format issues
+            * --> Handle each format issue separately, id-ed by unique *name/name* endings
+        * Need to get connecticut planning regions + FIPS codes into county_geo_id file
+            * --> Make csv and add as only tracked file in raw data bc not easy to download
+        * New problem unlocked: CONNECTICUT 
+            * annual_county_applications and gini have counties only then switch to planning regions only starting in 2022
+            * LAUS area file only has planning regions going back to 1990
+            * --> need to coordiante rest of files to switch in 2022 or cut off pre-switch 
+    * Next Steps
+        * Decide how to handle Kalawao County, HI depending on dropped vs combined
+        * Decide how to handle Connecticut
+        * Clean up formatting issues in LAUS + FIPS merge (decisions for each issue in notebook)
+        * Re-download raw gini data
+        * Check for less complicated Connecticut data from the state data website
 
 
