@@ -49,7 +49,8 @@ formations['state_formations'] = formations[quarters].sum(axis=1)
 formations = formations.rename(columns = {'geo': 'STATE'})
 
 # Reading and merging in geographic index key file
-geo_id = pd.read_csv('data_intermediate/state_geo_id.csv')
+geo_id = pd.read_csv('data_intermediate/state_geo_id.csv', 
+                     dtype={'state_fips': str})
 formations = pd.merge(geo_id, formations, on='STATE')
 
 

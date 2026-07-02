@@ -1,5 +1,4 @@
 """
-Note: This file is still a work in progress (WIP) pending suppressed data handling
 This file cleans the complete Census Business Formation Statistics time series dataset to produce: 
     1. a state-year level dataset on business formations (Pending, WIP)
     2. a state-month level dataset on business formations as an intermediate file
@@ -7,8 +6,6 @@ This file cleans the complete Census Business Formation Statistics time series d
 
 import pandas as pd
 import numpy as np
-import missingno as msno
-import matplotlib.pyplot as plt
 
 # Reading in Census Business Formation Statistics (BFS) complete time series dataset
 df = pd.read_csv('data_raw/BFS-mf/BFS-mf.csv', skiprows=392)
@@ -34,7 +31,7 @@ df = df[df['per_idx'] >= 13]
 ##########################################
 # ADJUSTING VARNAMES, VARTYPES, AND CONVERTING MISSING VALUES
 
-# Converting supressed ('D') observations to missing
+# Converting suppressed ('D') observations to missing
 df['val'] = df['val'].replace('D', np.nan)
 
 # Renaming and converting state_formations to numeric type
@@ -46,10 +43,11 @@ df = df.rename(columns = {'val': 'state_formations'})
 # ADDING STANDARDIZED GEOGRAPHIC INDEX (state fips) AND YEAR
 
 # Reading in geographic index standardization file (contains state indexes from all different sources)
-geo_id = pd.read_csv('data_intermediate/state_geo_id.csv')
+geo_id = pd.read_csv('data_intermediate/state_geo_id.csv', 
+                     dtype={'state_fips': str})
 
 # Merging in state_geo_id.csv to add state_fips
-df = pd.merge(df, geo_id, on="geo_idx")
+df = pd.merge(df, geo_id, on="geo_idx", indicator=False)
 
 # Sorting by location, time
 df = df.sort_values(by=['geo_idx','per_idx'])
@@ -92,6 +90,7 @@ ann = ann.groupby(['year', 'state_fips']).agg({
 
 # Applying annualization rule (will not impact complete years or missing years!)
 ann['ann_state_formations'] = ann['state_formations'] * (12/(12-ann['year_state_missing_count']))
+assert ann.groupby(['year', 'state_fips']).size().eq(1).all()
 
 
 ##########################################
@@ -102,14 +101,15 @@ ann = ann.drop(columns = ['state_formations'])
 ann = ann.rename(columns={'ann_state_formations':'state_formations'})
 
 # Loading in aggregated quarterly pre-2015 data
-pre_2015 = pd.read_csv('data_intermediate/bfs_historic_annual_state_formations.csv')
+pre_2015 = pd.read_csv('data_intermediate/bfs_historic_annual_state_formations.csv', dtype={'state_fips': str})
 
 # Combining data for complete state_formations file
 final = pd.concat([pre_2015, ann], ignore_index=True)
+assert final.groupby(['year', 'state_fips']).size().eq(1).all()
 
 
 ##########################################
-# CHECKING DATASET DETAILS
+# BASIC DATA VALIDATION / CHECKS
 
 # Comparing pre-aggregation/annualization data with post-aggregation data
 print(df.describe(include='all'))
@@ -129,6 +129,5 @@ for col in ann.columns:
 
 ##########################################
 # SAVING DATASETS
-
 df.to_csv('data_intermediate/state_formations_Q8_monthly.csv', index=False)
 final.to_csv('data_clean/annualized_state_formations.csv', index = False)

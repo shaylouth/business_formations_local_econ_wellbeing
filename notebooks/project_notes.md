@@ -26,6 +26,9 @@
 
 - **Stage 1.5 Data Cleaning**
     * [ ] Construct full stage one panel
+        * [ ] Ensure all counties are matched across files
+            * [ ] Connecticut
+            * [ ] Kalawao
     * [x] Construct county formations estimation
 
 - **First Stage Analysis**
@@ -167,4 +170,7 @@ for col in df.columns:
         * Re-download raw gini data
         * Check for less complicated Connecticut data from the state data website
 
-
+* **6/16/26**
+    * Project Progress
+        * CTData has county level employment numbers for 2011-2021, planning regions 2022-2023
+            * need to find 2005-2010 unemployment numbers, maybe in ACS?
