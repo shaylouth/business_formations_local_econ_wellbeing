@@ -6,7 +6,7 @@ venv/
 lit_review_papers/
 
 # Ignore personal project notes
-Notes.ipynb
+scratch_notebooks/
 
 # Ignore raw data, keep empty directory
 data_raw/*
