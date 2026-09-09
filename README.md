@@ -28,6 +28,5 @@ Most of the economic well-being data used in this project comes from the U.S. Ce
 ### *US Bureau of Labor Statistics (LAUS)*
 The unemployment data for this project comes from the U.S. Bureau of Labor Statistics' Local Area Unemployment Statistics (LAUS) program. The specific raw file this repository uses is the flatfile *la.data.64.County*, which can be found here ([LAUS Flatfiles](https://download.bls.gov/pub/time.series/la/)).
 
-
 ## Reproducibility
 A simple shell script (run_all.sh) is included to run the current data cleaning steps in order. In order for this to run successfully, the datasets mentioned above must be added to the `data_raw/` subdirectory, as the raw data files are not included in this repository. This pipeline will expand as the project develops.

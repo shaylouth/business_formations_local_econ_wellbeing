@@ -32,6 +32,8 @@
     * [x] Construct county formations estimation
 
 - **First Stage Analysis**
+    - [ ] Make maps!
+        - [ ] 
     - [ ] Learn fixed effects panel stuff in Python
     - [ ] Run analysis on full dataset, pre-2015 dataset, and with all partially missing years dropped and compare
 
@@ -174,3 +176,7 @@ for col in df.columns:
     * Project Progress
         * CTData has county level employment numbers for 2011-2021, planning regions 2022-2023
             * need to find 2005-2010 unemployment numbers, maybe in ACS?
+
+* **7/21/26**
+    * Project Progress
+        * 

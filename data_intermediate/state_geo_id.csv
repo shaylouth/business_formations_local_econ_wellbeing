@@ -1,53 +1,63 @@
-STATE,state_fips,STATE_NAME,geo_idx
-AL,01,Alabama,7
-AK,02,Alaska,6
-AZ,04,Arizona,9
-AR,05,Arkansas,8
-CA,06,California,10
-CO,08,Colorado,11
-CT,09,Connecticut,12
-DE,10,Delaware,13
-DC,11,District of Columbia,14
-FL,12,Florida,15
-GA,13,Georgia,16
-HI,15,Hawaii,17
-ID,16,Idaho,18
-IL,17,Illinois,19
-IN,18,Indiana,20
-IA,19,Iowa,21
-KS,20,Kansas,22
-KY,21,Kentucky,23
-LA,22,Louisiana,24
-ME,23,Maine,25
-MD,24,Maryland,26
-MA,25,Massachusetts,27
-MI,26,Michigan,28
-MN,27,Minnesota,29
-MS,28,Mississippi,30
-MO,29,Missouri,31
-MT,30,Montana,32
-NE,31,Nebraska,33
-NV,32,Nevada,34
-NH,33,New Hampshire,35
-NJ,34,New Jersey,36
-NM,35,New Mexico,37
-NY,36,New York,38
-NC,37,North Carolina,39
-ND,38,North Dakota,40
-OH,39,Ohio,41
-OK,40,Oklahoma,42
-OR,41,Oregon,43
-PA,42,Pennsylvania,44
-RI,44,Rhode Island,45
-SC,45,South Carolina,46
-SD,46,South Dakota,47
-TN,47,Tennessee,48
-TX,48,Texas,49
-UT,49,Utah,50
-VT,50,Vermont,51
-VA,51,Virginia,52
-WA,53,Washington,53
-WV,54,West Virginia,54
-WI,55,Wisconsin,55
-WY,56,Wyoming,56
-PR,72,Puerto Rico,57
+STATE,state_fips,STATE_NAME,geo_idx,_merge
+AK,02,Alaska,6.0,both
+AL,01,Alabama,7.0,both
+AR,05,Arkansas,8.0,both
+AS,60,American Samoa,,left_only
+AZ,04,Arizona,9.0,both
+CA,06,California,10.0,both
+CO,08,Colorado,11.0,both
+CT,09,Connecticut,12.0,both
+DC,11,District of Columbia,14.0,both
+DE,10,Delaware,13.0,both
+FL,12,Florida,15.0,both
+GA,13,Georgia,16.0,both
+GU,66,Guam,,left_only
+HI,15,Hawaii,17.0,both
+IA,19,Iowa,21.0,both
+ID,16,Idaho,18.0,both
+IL,17,Illinois,19.0,both
+IN,18,Indiana,20.0,both
+KS,20,Kansas,22.0,both
+KY,21,Kentucky,23.0,both
+LA,22,Louisiana,24.0,both
+MA,25,Massachusetts,27.0,both
+MD,24,Maryland,26.0,both
+ME,23,Maine,25.0,both
+MI,26,Michigan,28.0,both
+MN,27,Minnesota,29.0,both
+MO,29,Missouri,31.0,both
+MP,69,Commonwealth of the Northern Mariana Islands,,left_only
+MS,28,Mississippi,30.0,both
+MT,30,Montana,32.0,both
+MW,,,3.0,right_only
+NC,37,North Carolina,39.0,both
+ND,38,North Dakota,40.0,both
+NE,31,Nebraska,33.0,both
+NH,33,New Hampshire,35.0,both
+NJ,34,New Jersey,36.0,both
+NM,35,New Mexico,37.0,both
+NO,,,2.0,right_only
+NV,32,Nevada,34.0,both
+NY,36,New York,38.0,both
+OH,39,Ohio,41.0,both
+OK,40,Oklahoma,42.0,both
+OR,41,Oregon,43.0,both
+PA,42,Pennsylvania,44.0,both
+PR,72,Puerto Rico,57.0,both
+RI,44,Rhode Island,45.0,both
+SC,45,South Carolina,46.0,both
+SD,46,South Dakota,47.0,both
+SO,,,4.0,right_only
+TN,47,Tennessee,48.0,both
+TX,48,Texas,49.0,both
+UM,74,U.S. Minor Outlying Islands,,left_only
+US,,,1.0,right_only
+UT,49,Utah,50.0,both
+VA,51,Virginia,52.0,both
+VI,78,United States Virgin Islands,,left_only
+VT,50,Vermont,51.0,both
+WA,53,Washington,53.0,both
+WE,,,5.0,right_only
+WI,55,Wisconsin,55.0,both
+WV,54,West Virginia,54.0,both
+WY,56,Wyoming,56.0,both

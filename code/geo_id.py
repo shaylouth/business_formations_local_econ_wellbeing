@@ -1,9 +1,9 @@
 """
 This file creates a standardized geographic index to use across files 
 from different data sources. I take the BFS 'geo_idx' key and match it with
-state FIPS codes, and then add both into county FIPS codes to create:
-    1. state_geo_id.csv (for state-level datasets)
-    2. county_geo_id.csv (for county-level datasets)
+state FIPS codes, and then add both into a county FIPS codes file to create:
+    1. state_geo_id.csv (geographic crosswalk for state-level datasets)
+    2. county_geo_id.csv (geographic crosswalk for county-level datasets)
 """
 
 import pandas as pd
@@ -49,7 +49,6 @@ county_fips = pd.read_csv(
         "COUNTYFP": str
     })
 
-# Reading in 
 
 # Updating variable names and dropping unnecessary variables
 county_fips = county_fips.rename(columns = {'STATEFP': 'state_fips', 'COUNTYFP': 'county_fips', 'COUNTYNAME': 'COUNTY_NAME'})
