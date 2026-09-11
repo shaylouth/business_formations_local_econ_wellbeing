@@ -55,7 +55,7 @@ area[['county', 'state']] = area['area_text'].str.split(', ', expand=True)
 laus = pd.merge(laus, area, on=('area_code'))
 
 # #################################################
-# CLEANING FULL DATASET
+# DATA CLEANING
 
 # Dropping unnecessary columns
 laus = laus.drop(columns = [
@@ -67,9 +67,59 @@ laus = laus.drop(columns = [
 # Dropping annual average observations
 laus = laus[laus['period'] != 'M13']
 
+# Dropping Unnecessary Geographies (PR)
+laus = laus[laus['state'] != 'PR']
+
 # Adding 'DC' as the 'state' for District of Columbia to match other files
 assert laus.loc[laus['state'].isna(), 'county'].unique().tolist() == ['District of Columbia']
 laus = laus.fillna({'state':'DC'})
+
+
+# Changing Alaska Borough/city labels to match FIPS
+mask = laus['county'].str.endswith('Borough/city')
+assert laus.loc[mask, 'county'].nunique() == 4 
+    # Validates that this selects only the desired units
+
+laus['county'] = laus['county'].str.replace(
+    ' Borough/city',
+    ' City and Borough',
+    regex = False)
+
+
+# Matching Anchorage, Alaska county name with FIPS
+mask = laus['county'].str.endswith(' Borough/municipality')
+assert laus.loc[mask, 'county'].nunique() == 1
+    # Validating that this method selects only the desired unit
+    
+laus['county'] = laus['county'].str.replace(
+   ' Borough/municipality',
+   ' Municipality',
+   regex = False 
+)
+
+# Changing City County Equivalents in California/Colorado/Pennsylvania/Hawaii to match FIPS
+    # "x County/city" in LAUS vs "x County" in FIPS
+mask = laus['county'].str.endswith(' County/city')
+assert laus.loc[mask, 'county'].nunique() == 5
+    # Validates that only the desired 5 county units are selected 
+
+laus['county'] = laus['county'].str.replace(
+    ' County/city',
+    ' County',
+    regex = False
+)
+
+# Changing "Nantucket County/town" to match "Nantucket County" in FIPS key
+mask = laus['county'].str.endswith(' County/town')
+assert laus.loc[mask, 'county'].nunique() == 1
+
+laus ['county'] = laus['county'].str.replace(
+    ' County/town',
+    ' County',
+    regex = False
+)
+
+
 
 # #################################################
 # MERGING IN FIPS

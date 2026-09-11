@@ -19,6 +19,7 @@
         - [x] aggregate to year level
     - [ ] Unemployment
         - [x] figure out lack of file extension
+
     - [ ] Gini index
         - [ ] revisit structure
     - [ ] Poverty Rate
@@ -64,6 +65,16 @@ for col in df.columns:
     print("\n")
 
 ```
+
+## Project Structure
+
+* Raw Data Inputs
+    * State-level business formations and applications
+    * Business applications (county-level)
+    * Gini index
+    * Unemployment rate
+    * 
+* 
 
 ## Progress Notes
 
@@ -177,6 +188,16 @@ for col in df.columns:
         * CTData has county level employment numbers for 2011-2021, planning regions 2022-2023
             * need to find 2005-2010 unemployment numbers, maybe in ACS?
 
-* **7/21/26**
+* **9/10/26**
     * Project Progress
-        * 
+        * Reoriented myself in the project
+            * Verified no merge issues with state formations or state applications in county formations estimation dataset
+            * Found 227 missing observations in county applications dataset, but they are ALL due to changes in geographic administrative units overtime
+        * Need to solve 227 missing obs in county applications, so I plan to compare these counties with other county-level datasets (LAUS, ACS) before proceeding to decide how to handle each
+        * Solved all LAUS-FIPS merge problems other than connecticut, Kalawao County, and the counties with tildas
+    * Next steps:
+        * Solve Kalawao County, tilda counties in LAUS-FIPS merge
+        * Compare problem 227 in CA dataset with LAUS and ACS to decide how to handle the geographic changes consistently (use geo_hist_issues notebook that was setup today)
+        * Just drop connecticut at this stage for time purposes and bring it back in the next stage
+
+
