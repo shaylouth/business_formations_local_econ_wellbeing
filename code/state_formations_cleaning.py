@@ -109,7 +109,7 @@ assert final.groupby(['year', 'state_fips']).size().eq(1).all()
 
 
 ##########################################
-# BASIC DATA VALIDATION / CHECKS
+# BASIC DATA VALIDATION / FINAL CLEANUP
 
 # Comparing pre-aggregation/annualization data with post-aggregation data
 print(df.describe(include='all'))
@@ -117,15 +117,9 @@ print('###########################################')
 print(ann.describe(include='all'))
 print('###########################################')
 
-# Inspecting missing values and data distribution by column
-for col in ann.columns:
-    print("====", col, "====")
-    print("dtype:", ann[col].dtype)
-    print("nunique:", ann[col].nunique())
-    print("missing:", ann[col].isna().sum())
-    print(ann[col].value_counts(dropna=False).head(10))
-    print("\n")
-
+# Dropping geographic units excluded at this stage
+excluded_geo_units = ['CT', 'PR', 'AK']
+df_long_complete = final[~final['STATE'].isin(excluded_geo_units)]
 
 ##########################################
 # SAVING DATASETS

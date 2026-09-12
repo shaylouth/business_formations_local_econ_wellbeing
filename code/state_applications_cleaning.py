@@ -69,20 +69,14 @@ assert df_agg['state_apps'].notna().all()
 
 
 ##########################################
-# BASIC DATA VALIDATION / CHECKS
+# BASIC DATA VALIDATION / FINAL CLEANUP
 
 print(df_agg.describe(include='all'))
 print('###########################################')
 
-# Inspecting missing values and data distribution by column
-for col in df_agg.columns:
-    print("====", col, "====")
-    print("dtype:", df_agg[col].dtype)
-    print("nunique:", df_agg[col].nunique())
-    print("missing:", df_agg[col].isna().sum())
-    print(df_agg[col].value_counts(dropna=False).head(10))
-    print("\n")
-
+# Dropping geographic units excluded at this stage
+excluded_geo_units = ['CT', 'PR', 'AK']
+df_long_complete = df_agg[~df_agg['STATE'].isin(excluded_geo_units)]
 
 ##########################################
 # SAVING DATASETS

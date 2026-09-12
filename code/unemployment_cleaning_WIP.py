@@ -67,8 +67,8 @@ laus = laus.drop(columns = [
 # Dropping annual average observations
 laus = laus[laus['period'] != 'M13']
 
-# Dropping Unnecessary Geographies (PR)
-excluded_geo_units = ['PR', 'CT']
+# Dropping Unnecessary Geographies
+excluded_geo_units = ['PR', 'CT', 'AK']
 
 laus = laus[~laus['state'].isin(excluded_geo_units)]
 
