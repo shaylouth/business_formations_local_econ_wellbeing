@@ -8,6 +8,9 @@ lit_review_papers/
 # Ignore personal project notes
 scratch_notebooks/
 
+# Temporary CSV exports from notebooks
+/notebooks/**/*.csv
+
 # Ignore raw data, keep empty directory
 data_raw/*
 !data_raw/.gitkeep

@@ -70,5 +70,34 @@ print(county_id.head())
 county_id['full_fips'] = county_id['state_fips'] + county_id['county_fips']
 print(county_id.head())
 
+################# Creating Simplified County Names ###################
+# Creating a second county_names variable stripping diacritics/accents and capitalization for
+# matching with other files without diacritics/accents
+
+# NOTE: This version was written with a focus on practicing new pandas string cleaning skills, 
+# will update with different method to address all diacritics/accents later
+
+county_id['county_name_match'] = county_id['COUNTY_NAME'].str.lower()
+
+mask = county_id['county_name_match'].str.contains('ñ')
+print(county_id.loc[mask, 'county_name_match'].nunique())
+print(county_id.loc[mask, 'county_name_match'].unique())
+
+county_id['county_name_match'] = county_id['county_name_match'].str.replace(
+    'ñ',
+    'n',
+    regex = False
+)
+
+assert not county_id['county_name_match'].str.contains('ñ').any()
+
+
+################# Final Dataset Restriction ###################
+# Dropping unnecessary geographic units that are excluded from the analysis at the present stage
+excluded_states = ['CT', 'PR']
+
+county_id = county_id[~county_id['STATE'].isin(excluded_states)]
+state_id = state_id[~state_id['STATE'].isin(excluded_states)]
+
 # Saving resulting file to merge with intermediate data
 county_id.to_csv('data_intermediate/county_geo_id.csv', index=False)

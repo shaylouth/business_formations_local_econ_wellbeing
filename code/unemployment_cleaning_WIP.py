@@ -2,7 +2,7 @@
 This file will read in and clean the unemployment data from the Bureau of Labor Statistics' Local Area Unemployment Statistics.
 """
 
-# #################################################
+# ##################################################################################################
 # SETUP
 
 # Packages
@@ -24,7 +24,7 @@ series = pd.read_csv(
     sep="\t"
 )
 
-# #################################################
+# ##################################################################################################
 # SERIES METADATA PREPARATION AND MERGING
 
 # Stripping extra spaces in file column names
@@ -40,7 +40,7 @@ laus = laus[laus['measure_code'] == 3]
 # Restricting to county/county-equivalents (counties and equivalents = F)
 laus = laus[laus['area_type_code'] == 'F']
 
-# #################################################
+# ##################################################################################################
 # AREA METADATA PREPARATION & MERGING
 
 # Stripping column names
@@ -54,8 +54,8 @@ area[['county', 'state']] = area['area_text'].str.split(', ', expand=True)
 
 laus = pd.merge(laus, area, on=('area_code'))
 
-# #################################################
-# DATA CLEANING
+# ##################################################################################################
+# DATA CLEANING 1 : BASIC CLEANUP
 
 # Dropping unnecessary columns
 laus = laus.drop(columns = [
@@ -68,12 +68,16 @@ laus = laus.drop(columns = [
 laus = laus[laus['period'] != 'M13']
 
 # Dropping Unnecessary Geographies (PR)
-laus = laus[laus['state'] != 'PR']
+excluded_geo_units = ['PR', 'CT']
+
+laus = laus[~laus['state'].isin(excluded_geo_units)]
+
+# ##################################################################################################
+# DATA CLEANING 2 : BASIC COUNTY NAME STANDARDIZATION 
 
 # Adding 'DC' as the 'state' for District of Columbia to match other files
 assert laus.loc[laus['state'].isna(), 'county'].unique().tolist() == ['District of Columbia']
 laus = laus.fillna({'state':'DC'})
-
 
 # Changing Alaska Borough/city labels to match FIPS
 mask = laus['county'].str.endswith('Borough/city')
@@ -84,7 +88,6 @@ laus['county'] = laus['county'].str.replace(
     ' Borough/city',
     ' City and Borough',
     regex = False)
-
 
 # Matching Anchorage, Alaska county name with FIPS
 mask = laus['county'].str.endswith(' Borough/municipality')
@@ -119,20 +122,25 @@ laus ['county'] = laus['county'].str.replace(
     regex = False
 )
 
+# Converting all county names to lowercase to match with FIPS matching names
+laus['county'] = laus['county'].str.lower()
 
-
-# #################################################
+# ##################################################################################################
 # MERGING IN FIPS
 
-fips = pd.read_csv('data_intermediate/state_geo_id.csv')
-# laus = pd.merge(laus, fips, left_on='county', right_on='COUNTY_NAME', how='outer', indicator=True)
+fips = pd.read_csv('data_intermediate/county_geo_id.csv')
+laus = pd.merge(laus, fips, left_on='county', right_on='county_name_match', how='outer', indicator=True)
+
+# ##################################################################################################
+# DATA CLEANING 3 : DIACRITIC / ACCENT STANDARDIZATION 
 
 
-# #################################################
+
+# ##################################################################################################
 # AGGREGATING TO YEAR LEVEL
 
 
-# #################################################
+# ##################################################################################################
 # CHECKING & SAVING DATASET
 
 print('Final Check #################################')

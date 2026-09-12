@@ -36,6 +36,10 @@ assert df_long_complete.groupby(['full_fips', 'year']).size().eq(1).all()
 assert df_long_complete['full_fips'].str.len().eq(5).all()
 assert df_long_complete['county_apps'].notna().all()
 
+# Dropping geographic units excluded at this stage
+excluded_geo_units = ['CT', 'PR']
+df_long_complete = df_long_complete[~df_long_complete['STATE'].isin(excluded_geo_units)]
+
 #######################################
 # SAVING DATA
 df_long_complete.to_csv('data_clean/annual_county_applications.csv', index=False)
