@@ -200,4 +200,16 @@ for col in df.columns:
         * Compare problem 227 in CA dataset with LAUS and ACS to decide how to handle the geographic changes consistently (use geo_hist_issues notebook that was setup today)
         * Just drop connecticut at this stage for time purposes and bring it back in the next stage
 
+* **9/11/26**
+    * Project Progress
+        * Continued LAUS-FIPS merge harmonization
+            * created simplified matching county name to match counties with tildes (laus)
+        * Added state exclusions county-level cleaning files (CT and PR)
+        * Started geographic history change comparison between FIPS, county apps, and LAUS (geo_hist notebook)
+    * Decisions/Next Steps
+        * Drop Alaska in first stage of analysis due to complicated historical county splits that must be handled carefully in the next stage
+        * Shannon County → Oglala Lakota County: harmonize/recode because it's a rename/recode rather than a split
+        * Bedford city/Bedford County: Aggregate where separated
+        * Kalawao county: aggregate with Maui county in datasets where split
+            
 
