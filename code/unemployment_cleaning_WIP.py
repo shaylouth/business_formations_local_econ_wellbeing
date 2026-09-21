@@ -67,6 +67,9 @@ laus = laus.drop(columns = [
 # Dropping annual average observations
 laus = laus[laus['period'] != 'M13']
 
+# Dropping unnecessary years
+laus = laus[laus['year'] >= 2005]
+
 # Dropping Unnecessary Geographies
 excluded_geo_units = ['PR', 'CT', 'AK']
 
@@ -81,7 +84,7 @@ laus = laus.fillna({'state':'DC'})
 
 # Changing Alaska Borough/city labels to match FIPS
 mask = laus['county'].str.endswith('Borough/city')
-assert laus.loc[mask, 'county'].nunique() == 4 
+# assert laus.loc[mask, 'county'].nunique() == 4  # Commented out due to temporary AK exclusion
     # Validates that this selects only the desired units
 
 laus['county'] = laus['county'].str.replace(
@@ -91,7 +94,7 @@ laus['county'] = laus['county'].str.replace(
 
 # Matching Anchorage, Alaska county name with FIPS
 mask = laus['county'].str.endswith(' Borough/municipality')
-assert laus.loc[mask, 'county'].nunique() == 1
+# assert laus.loc[mask, 'county'].nunique() == 1 # Commented out due to temporary AK exclusion
     # Validating that this method selects only the desired unit
     
 laus['county'] = laus['county'].str.replace(
@@ -128,22 +131,52 @@ laus['county'] = laus['county'].str.lower()
 # ##################################################################################################
 # MERGING IN FIPS
 
-fips = pd.read_csv('data_intermediate/county_geo_id.csv')
-laus = pd.merge(laus, fips, left_on='county', right_on='county_name_match', how='outer', indicator=True)
-
-# ##################################################################################################
-# DATA CLEANING 3 : DIACRITIC / ACCENT STANDARDIZATION 
-
-
+fips = pd.read_csv('data_intermediate/county_geo_id.csv',
+                   dtype={
+                       'state_fips': str,
+                       'county_fips': str,
+                       'full_fips': str})
+laus = pd.merge(laus, fips, left_on=['state', 'county'], right_on=['STATE', 'county_name_match'], how='left', indicator=True)
 
 # ##################################################################################################
 # AGGREGATING TO YEAR LEVEL
+# NOTE : Taking the mean to annualize the unemployment rate for now, will re-calculate using raw unemployment/employment counts
+# in the next stage 
+
+laus['unemployment_rate'] = pd.to_numeric(laus['value'], errors='coerce')
+
+laus_agg = (
+    laus.groupby(['full_fips', 'year'])
+        .agg(
+            unemployment_rate=('unemployment_rate', 'mean'),
+            months_observed=('unemployment_rate', 'count'),
+            county=('COUNTY_NAME', 'first'),
+            state=('STATE', 'first')
+        )
+        .reset_index()
+)
 
 
 # ##################################################################################################
-# CHECKING & SAVING DATASET
+# DATA CLEANING 3 : FLAGGING MISSING DATA YEARS
 
-print('Final Check #################################')
-print(laus.head())
+# Flagging years where significant monthly data was not collected due to Hurricane Katrina for future robustness checks
+laus_agg['katrina_incomplete'] = (
+    (laus_agg['state'] == 'LA') &
+    (laus_agg['year'].isin([2005, 2006])) &
+    (laus_agg['months_observed'] < 12)
+)
 
-laus.to_csv('data_clean/unemployment_WIP.csv', index=False)
+# ##################################################################################################
+# VALIDATING & SAVING DATASET
+
+assert laus_agg.groupby(['full_fips', 'year']).size().eq(1).all()
+assert laus_agg['full_fips'].str.len().eq(5).all()
+print(
+    laus_agg.loc[laus_agg['months_observed'] < 12]
+        .groupby(['year', 'months_observed'])
+        .size()
+)
+
+
+laus_agg.to_csv('data_clean/unemployment_WIP.csv', index=False)

@@ -211,5 +211,36 @@ for col in df.columns:
         * Shannon County → Oglala Lakota County: harmonize/recode because it's a rename/recode rather than a split
         * Bedford city/Bedford County: Aggregate where separated
         * Kalawao county: aggregate with Maui county in datasets where split
-            
+
+* **9/12/26**
+    * Project Progress
+        * Investigated the details of each of the above next step issues ^ 
+        * Added AK to state exclusion list in all county-level dataset cleaning files
+        * Implemented Oglala Lakota, Bedford, and Kalawao/Maui cleaning steps in the county applications cleaning file
+        * Confirmed all remaining missing county_forms_est are from missing state formations, which were created intentionally! (verified in estimation_scratch.ipynb)
+    * Next Steps
+        * Finish aggregating LAUS
+        * Merge LAUS with estimation file
+        * See how long getting Gini would take
+
+* **9/15/26**
+    * Project Progress
+        * Found 2025 missing data soure; the federal government just didn't collect the data in October 2025, so there is no data
+        * 2005 and 2006 missing data are from Katrina -- flagged those years to test excluding for robustness
+        * Found new issue in final data assertions -- there are still FIPS-county name duplicate matches that need to be addressed
+    * Next step
+        * sort out FIPS-county name duplicates in LAUS
+        * Merge LAUS with county formations estimation data
+        * ACS? Gini?
+
+* **9/20/26**
+    * Project Progress
+        * Solved LAUS duplicates issue -- there were no duplicates in the post-aggregation data set, the assertion was just using the pre-aggregated data object
+        * Updated LAUS file to specify how to read in variable types of fips file; consider updating other files to ensure fips are in string form with leading zeroes
+        * Merged LAUS with county formations estimation dataset
+
+    * Next steps
+        * Inspect/validate merge
+        * See how ACS clean is doing (estimate how long)
+        * Cleanup final dataset
 

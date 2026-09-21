@@ -68,6 +68,7 @@ print(county_id.head())
 ################# Creating Unique County 5-digit FIPS Codes ###################
 # Adding combined 5 digit state+county fips for unique a county identifier
 county_id['full_fips'] = county_id['state_fips'] + county_id['county_fips']
+
 print(county_id.head())
 
 ################# Creating Simplified County Names ###################
