@@ -1,0 +1,10 @@
+name: formations
+channels:
+  - defaults
+dependencies:
+  - python=3.11
+  - scipy
+  - numpy
+  - pandas
+  - missingno
+
