@@ -241,6 +241,41 @@ for col in df.columns:
 
     * Next steps
         * Inspect/validate merge
-        * See how ACS clean is doing (estimate how long)
+        * See how ACS/gini clean is (estimate how long)
         * Cleanup final dataset
+
+* **10/20/26**
+    * Project Progress
+        * Set up Zotero collection for lit review
+        * Collected a few papers for lit review on county formations estimation method
+
+
+* **10/29/26**
+    * Project Progress
+        * Cleaning Gini Data
+            * Removed unnecessary states
+            * Cleaned up and added validation to year extraction loop
+            * Found four counties from Gini that didn't match anything in geographic crosswalk
+
+    * Gini Cleaning Issues
+
+        * Bedford city, VA (Gini Issue)
+            * needs to be combined with Bedford county, but harmonizing the gini index between the two requires either subgroup decomposition or recalculating it with raw data
+            * Decision: dropping across datasets for now, adding back in in stage two
+            * Dropped Bedford city from gini dataset, will drop Bedford County in final panel later so it is easy to reverse
+
+        * DO?A ANA COUNTY, La Salle Parish
+            * just typos in 2010 (Dona Ana) and 2010-11 (LaSalle) gini files
+            * county names have been corrected in the gini cleaning file
+
+        * Shannon County
+            * renamed to Oglala Lakota County in 2015, no overlap in gini file
+            * renamed Shannon County to current name
+
+    * Next Steps
+        * Continue lit review
+        * Finish final panel construction with gini
+        * Drop Bedford County in final panel
+        * start baseline analysis
+
 
