@@ -76,7 +76,7 @@ excluded_geo_units = ['PR', 'CT', 'AK']
 laus = laus[~laus['state'].isin(excluded_geo_units)]
 
 # ##################################################################################################
-# DATA CLEANING 2 : BASIC COUNTY NAME STANDARDIZATION 
+# DATA CLEANING 2 : GEOGRAPHIC STANDARDIZATION
 
 # Adding 'DC' as the 'state' for District of Columbia to match other files
 assert laus.loc[laus['state'].isna(), 'county'].unique().tolist() == ['District of Columbia']
@@ -149,7 +149,7 @@ laus_agg = (
     laus.groupby(['full_fips', 'year'])
         .agg(
             unemployment_rate=('unemployment_rate', 'mean'),
-            months_observed=('unemployment_rate', 'count'),
+            months_observed_unemployment=('unemployment_rate', 'count'),
             county=('COUNTY_NAME', 'first'),
             state=('STATE', 'first')
         )
@@ -164,7 +164,7 @@ laus_agg = (
 laus_agg['katrina_incomplete'] = (
     (laus_agg['state'] == 'LA') &
     (laus_agg['year'].isin([2005, 2006])) &
-    (laus_agg['months_observed'] < 12)
+    (laus_agg['months_observed_unemployment'] < 12)
 )
 
 # ##################################################################################################
@@ -173,8 +173,8 @@ laus_agg['katrina_incomplete'] = (
 assert laus_agg.groupby(['full_fips', 'year']).size().eq(1).all()
 assert laus_agg['full_fips'].str.len().eq(5).all()
 print(
-    laus_agg.loc[laus_agg['months_observed'] < 12]
-        .groupby(['year', 'months_observed'])
+    laus_agg.loc[laus_agg['months_observed_unemployment'] < 12]
+        .groupby(['year', 'months_observed_unemployment'])
         .size()
 )
 

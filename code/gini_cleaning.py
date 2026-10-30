@@ -94,6 +94,15 @@ gini = pd.merge(panel,
 assert gini.loc[gini['_merge'] == 'left_only'].empty # no unmatched counties
 assert gini[gini.duplicated(keep=False, subset=['year', 'full_fips'])].empty # no county-year duplicates
 
+################# FINAL CLEANUP  #####################
+# Dropping unnecessary variables
+gini = gini.drop(columns=['Geography', 'Geographic Area Name',
+                           'geo_idx', '_merge', 'state_fips', 
+                           'county_fips', 'county_name_match'])
+
+# Renaming variables
+gini = gini.rename(columns={'Estimate!!Gini Index':'gini', 'Margin of Error!!Gini Index':'gini_margin_of_error'})
+
 
 ################# SAVING DATA #####################
 gini.to_csv('data_intermediate/gini_panel.csv', index=False)

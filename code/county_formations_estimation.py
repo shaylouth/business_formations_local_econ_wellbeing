@@ -41,6 +41,9 @@ est['county_apps'] = pd.to_numeric(est['county_apps'])
 # Calculating estimated county formations
 est['county_forms_est'] = (est['state_formations']/est['state_apps']) * est['county_apps']
 
+# #################################
+# FINAL CLEANUP
+est = est.drop(columns=['state_fips', 'county_fips'])
 
 # #################################
 # SAVING DATASET

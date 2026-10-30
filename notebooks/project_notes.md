@@ -17,28 +17,32 @@
                 - *Yes, BUT this is now exploding the early analysis stage beyond my current timeline. I am going to take a faster, temporary route to produce a preliminary analysis and return to this fabulous data after that.*
             - [x] pro/con to different ways to handle the missingness
         - [x] aggregate to year level
-    - [ ] Unemployment
+    - [X] Unemployment
         - [x] figure out lack of file extension
 
-    - [ ] Gini index
-        - [ ] revisit structure
+    - [X] Gini index
+        - [X] revisit structure
+
     - [ ] Poverty Rate
         - [ ] download data
 
 - **Stage 1.5 Data Cleaning**
-    * [ ] Construct full stage one panel
-        * [ ] Ensure all counties are matched across files
-            * [ ] Connecticut
-            * [ ] Kalawao
+    * [X] Construct full stage one panel
     * [x] Construct county formations estimation
 
 - **First Stage Analysis**
     - [ ] Make maps!
         - [ ] 
-    - [ ] Learn fixed effects panel stuff in Python
+    - [ ] Learn fixed effects panel reg stuff in Python
     - [ ] Run analysis on full dataset, pre-2015 dataset, and with all partially missing years dropped and compare
 
 - **Stage Two Data Cleaning**
+    * [ ] Obtain data to assess county business formations estimation method
+    
+    * [ ] Address geographic inconsistency issues
+        * [ ] obtain gini index for counties that combined/separated
+            * [ ] Bedford city/County
+
     * [ ] Find county demographics sources
         * race
         * maybe proportion immigrant?
@@ -135,7 +139,7 @@ for col in df.columns:
         * Finished county-year formations estimations
     * Next Steps
         * Clean remaining 3 files
-        * Prelim analysis (regressionson three different data subsets!)
+        * Prelim analysis (regressions on three different data subsets!)
 
 * **6/1/26**
     * Project Progress
@@ -175,7 +179,7 @@ for col in df.columns:
         * New problem unlocked: CONNECTICUT 
             * annual_county_applications and gini have counties only then switch to planning regions only starting in 2022
             * LAUS area file only has planning regions going back to 1990
-            * --> need to coordiante rest of files to switch in 2022 or cut off pre-switch 
+            * --> need to coordinate rest of files to switch in 2022 or cut off pre-switch 
     * Next Steps
         * Decide how to handle Kalawao County, HI depending on dropped vs combined
         * Decide how to handle Connecticut
@@ -194,9 +198,9 @@ for col in df.columns:
             * Verified no merge issues with state formations or state applications in county formations estimation dataset
             * Found 227 missing observations in county applications dataset, but they are ALL due to changes in geographic administrative units overtime
         * Need to solve 227 missing obs in county applications, so I plan to compare these counties with other county-level datasets (LAUS, ACS) before proceeding to decide how to handle each
-        * Solved all LAUS-FIPS merge problems other than connecticut, Kalawao County, and the counties with tildas
+        * Solved all LAUS-FIPS merge problems other than connecticut, Kalawao County, and the counties with tildes
     * Next steps:
-        * Solve Kalawao County, tilda counties in LAUS-FIPS merge
+        * Solve Kalawao County, tilde counties in LAUS-FIPS merge
         * Compare problem 227 in CA dataset with LAUS and ACS to decide how to handle the geographic changes consistently (use geo_hist_issues notebook that was setup today)
         * Just drop connecticut at this stage for time purposes and bring it back in the next stage
 
@@ -225,7 +229,7 @@ for col in df.columns:
 
 * **9/15/26**
     * Project Progress
-        * Found 2025 missing data soure; the federal government just didn't collect the data in October 2025, so there is no data
+        * Found 2025 missing data source; the federal government just didn't collect the data in October 2025, so there is no data
         * 2005 and 2006 missing data are from Katrina -- flagged those years to test excluding for robustness
         * Found new issue in final data assertions -- there are still FIPS-county name duplicate matches that need to be addressed
     * Next step
@@ -257,8 +261,7 @@ for col in df.columns:
             * Cleaned up and added validation to year extraction loop
             * Found four counties from Gini that didn't match anything in geographic crosswalk
 
-    * Gini Cleaning Issues
-
+    * Gini-FIPS Merge Issues
         * Bedford city, VA (Gini Issue)
             * needs to be combined with Bedford county, but harmonizing the gini index between the two requires either subgroup decomposition or recalculating it with raw data
             * Decision: dropping across datasets for now, adding back in in stage two
@@ -278,4 +281,18 @@ for col in df.columns:
         * Drop Bedford County in final panel
         * start baseline analysis
 
+
+* **10/30/26**
+    * Project Progress
+        * Additional gini cleanup in gini cleaning file
+        * Completed gini merge into final panel
+        * Checked that all missing gini data in final panel is from years not included in data download 
+            * (consider supplementing with alternative source later!)
+        * Dropped bedford county in final panel construction script
+        * Started analysis script and exploratory FE models
+    * Next Steps
+        * Continue lit review
+        * Decide if I should use business-formations-per-capita instead
+        * Decide lagged/leading variable choices for gini baseline FE model 
+            * (how to make the data work giving missing early gini data)
 
