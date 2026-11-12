@@ -70,15 +70,6 @@ for col in df.columns:
 
 ```
 
-## Project Structure
-
-* Raw Data Inputs
-    * State-level business formations and applications
-    * Business applications (county-level)
-    * Gini index
-    * Unemployment rate
-    * 
-* 
 
 ## Progress Notes
 
@@ -295,4 +286,5 @@ for col in df.columns:
         * Decide if I should use business-formations-per-capita instead
         * Decide lagged/leading variable choices for gini baseline FE model 
             * (how to make the data work giving missing early gini data)
+        * Consider what data might serve as a valid IV for business formations (look at new data download closer)
 

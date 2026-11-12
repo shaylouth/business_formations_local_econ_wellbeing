@@ -13,18 +13,30 @@ Please note this project is still in the early stages. Current work is focused o
 
 The next step in this project is to finish constructing the panel, including cleaning, standardizing, and merging the remaining datasets. Then, I will conduct a preliminary analysis to assess baseline relationships. After this, I plan to incorporate additional county demographics data and conduct a more detailed analysis to assess relationship heterogeneity. I have yet to choose specific estimators for this step, but I plan to use interaction terms for heterogeneity and I hope to explore dynamic models to further explore potential associations between pre-existing poverty and unemployment and the baseline relationship between business formations and poverty and unemployment over time.
 
+
 ## Project Structure
 ```text
 business_formations_local_econ_wellbeing/
 ├── code/               # Python files for entire project pipeline
+│    ├── geo_id.py                           # Creates geographic crosswalks
+│    ├── quarterly_bfs_cleaning.py           # Cleans quarterly BFS data used to fill BFS time series gaps
+│    ├── state_applications_cleaning.py      # Cleans state business applications from BFS time series
+│    ├── state_formations_cleaning.py        # Cleans state business formations from BFS time series
+│    ├── county_applications_cleaning.py     # Cleans county business applications from BFS county data
+│    ├── unemployment_cleaning.py            # Cleans BLS unemployment data
+│    ├── gini_cleaning.py                    # Cleans ACS gini data
+│    ├── county_formations_estimation.py     # Calculates estimated county business formations  
+│    ├── final_panel_creation.py             # Constructs panel from all cleaned data
+│    └── baseline_analysis.py                # Initial (stage-one) analysis 
 ├── data_raw/            # Original source data (excluded from Git)
-├── data_intermediate/    # Intermediate data files
+├── data_intermediate/   # Intermediate data files
 ├── data_clean/          # Cleaned datasets
 ├── notebooks/           # Exploration and debugging
 ├── figures/             # Generated figures
 ├── environment.yml      # Python dependencies
-└── run_all.sh            # Executes project pipeline in order
+└── run_all.sh           # Executes project pipeline in order
 ```
+
 
 ## Data Sources
 
@@ -48,7 +60,6 @@ To reproduce project:
     * Place directly in data_raw/
 
 
-
 ### *American Community Survey (ACS)*
 Most of the economic well-being data used in this project comes from the U.S. Census Bureau's American Community Survey data.
 
@@ -66,6 +77,7 @@ To reproduce:
     * *la.data.64.County*
     * *la.area*
     * *la.series*
+
 
 ## Reproducibility
 A simple shell script (run_all.sh) is included to run the current data cleaning steps in order. In order for this to run successfully, the datasets mentioned above must be added to the `data_raw/` subdirectory, as the raw data files are not included in this repository. 
